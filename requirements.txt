@@ -1,0 +1,4 @@
+Flask==2.3.2
+Flask-RESTful==0.3.10
+Werkzeug==2.3.7
+whisperx @ git+https://github.com/m-bain/whisperx.git@0a1137e41c9ec5067cc18a2b0d8d8071055388e
