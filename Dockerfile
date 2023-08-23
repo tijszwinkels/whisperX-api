@@ -25,4 +25,4 @@ EXPOSE 5000
 ENV FLASK_RUN_HOST=0.0.0.0
 
 # Run the command to start your app
-CMD ["/opt/conda/envs/whisperx/bin/flask", "run"]
+CMD ["/opt/conda/envs/whisperx/bin/gunicorn", "-b", "0.0.0.0:5000", "--workers", "1", "--timeout", "300", "app:app"]

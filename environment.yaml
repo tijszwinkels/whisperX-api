@@ -1,0 +1,16 @@
+name: whisperx
+channels:
+  - nvidia
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch==2.0.0
+  - torchaudio==2.0.0
+  - pytorch-cuda=11.8
+  - pip:
+    - git+https://github.com/m-bain/whisperx.git
+    - flask
+    - Flask-RESTful
+    - Werkzeug
+    - gunicorn
