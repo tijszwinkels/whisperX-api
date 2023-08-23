@@ -15,7 +15,7 @@ compute_type = "float16" # change to "int8" if low on GPU mem (may reduce accura
 min_speakers=1
 max_speakers=10
 UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = {'mp3', 'mp4', 'mpeg', 'mpga', 'm4a', 'wav', 'webm'}
+ALLOWED_EXTENSIONS = {".mp3", ".wav", ".awb", ".aac", ".ogg", ".oga", ".m4a", ".wma", ".amr"}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
