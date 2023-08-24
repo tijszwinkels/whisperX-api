@@ -20,8 +20,9 @@ ALLOWED_EXTENSIONS = {"mp3", "wav", "awb", "aac", "ogg", "oga", "m4a", "wma", "a
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Load model
+# Load models
 model = whisperx.load_model("large-v2", device, compute_type=compute_type)
+diarize_model = whisperx.DiarizationPipeline(use_auth_token=config.HF_TOKEN, device=device)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -48,7 +49,7 @@ def transcribe():
         return jsonify({'error': 'Invalid file type'}), 400
 
 def transcribe(audio_file):
-    global model
+    global model, diarize_model
     # 1. Transcribe with original whisper (batched)
     audio = whisperx.load_audio(audio_file)
     result = model.transcribe(audio, batch_size=batch_size)
@@ -58,7 +59,6 @@ def transcribe(audio_file):
     result = whisperx.align(result["segments"], model_a, metadata, audio, device, return_char_alignments=False)
 
     # 3. Assign speaker labels
-    diarize_model = whisperx.DiarizationPipeline(use_auth_token=config.HF_TOKEN, device=device)
     diarize_segments = diarize_model(audio_file)
 
     # Return result

@@ -48,7 +48,70 @@ This will start the API and make it accessible on port 5000.
 To transcribe an audio file, send a POST request to the API endpoint. Here's an example using `curl`:
 
 ```bash
-curl http://127.0.0.1:5000/transcribe -X POST -F "file=@./audio.mp3"
+curl http://127.0.0.1:5000/transcribe -X POST -F "file=@./audio_en.mp3"
 ```
 
 Replace `./audio.mp3` with the path to your audio file.
+
+The output looks as following:
+```
+{
+   "segments" : [
+      {
+         "end" : 10.192,
+         "speaker" : "SPEAKER_01",
+         "start" : 2.883,
+         "text" : " This is a test audio file of about phone line quality in English.",
+         "words" : [
+            {
+               "end" : 3.043,
+               "score" : 0.718,
+               "speaker" : "SPEAKER_00",
+               "start" : 2.883,
+               "word" : "This"
+            },
+            {
+               "end" : 3.163,
+               "score" : 0.096,
+               "speaker" : "SPEAKER_00",
+               "start" : 3.123,
+               "word" : "is"
+            },
+            {
+               "end" : 3.344,
+               "score" : 0.456,
+               "speaker" : "SPEAKER_00",
+               "start" : 3.324,
+               "word" : "a"
+            },
+            <...>
+         ],
+      }
+   ],
+    "word_segments" : [
+        {
+            "end" : 3.043,
+            "score" : 0.718,
+            "speaker" : "SPEAKER_00",
+            "start" : 2.883,
+            "word" : "This"
+        },
+        {
+            "end" : 3.163,
+            "score" : 0.096,
+            "speaker" : "SPEAKER_00",
+            "start" : 3.123,
+            "word" : "is"
+        },
+        {
+            "end" : 3.344,
+            "score" : 0.456,
+            "speaker" : "SPEAKER_00",
+            "start" : 3.324,
+            "word" : "a"
+        },
+        <...>
+    ]
+}
+        
+```
